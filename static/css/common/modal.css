@@ -1,0 +1,47 @@
+.modal {
+	width: 100vw;
+	height: 100vh;
+	display: none;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 100;
+	font-size: .9rem;
+	background-color: rgba(0, 0, 0, .5);
+}
+
+.modal .modalContent {
+	min-width: 80vw;
+	padding: 3vw 3.4vw;
+}
+.modal .modalContent:hover {
+	box-shadow: none;
+}
+.modal h3 {
+	margin: 0;
+}
+.modal .modalFooter {
+	justify-content: flex-end;
+	margin-top: 1rem;
+}
+.modal .btn {
+	font-size: .8rem;
+	font-weight: 400;
+	border: transparent;
+	border-radius: .2rem;
+	color: #fff;
+	padding: .4rem .6rem;
+}
+.modal .closeBtn {
+	background-color: var(--gray);
+}
+.modal .confirmBtn {
+	background-color: var(--successColor);
+}
+.modal .btn:disabled {
+	background-color: var(--beige);
+}

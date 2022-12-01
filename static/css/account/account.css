@@ -1,0 +1,47 @@
+input {
+	width: 100%;
+	font-size: .9rem;
+	line-height: 1;
+	padding: 2.6vw 3.8vw;
+}
+label {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+	font-size: 1.1rem;
+	font-weight: 600;
+	margin-bottom: 1.7vw;
+}
+button {
+	width: 100%;
+	color: #fff;
+	background-color: var(--black);
+}
+button:hover, button:active {
+	border-color: var(--successColor);
+	box-shadow: 1vw 1vw #000;
+	background-color: var(--successColor);
+	transform: translate(-1vw,-1vw);
+}
+header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 5vw;
+}
+header .headerRight a {
+	text-decoration: underline;
+}
+
+.loginForm > div {
+	margin-bottom: 6vw;
+}
+.signupLink {
+	font-size: 1.1rem;
+	text-align: center;
+	margin-top: 10vw;
+}
+.signupLink a {
+	text-decoration: underline;
+}

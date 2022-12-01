@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Log in | Knocknock</title>
+	<link rel="icon" type="image/svg" href="/images/favicon.svg"/>
+	<link rel="stylesheet" href="/css/common/normalize.css">
+	<link rel="stylesheet" href="/css/common/default.css">
+	<link rel="stylesheet" href="/css/common/header.css">
+	<link rel="stylesheet" href="/css/account/account.css">
+</head>
+
+<body>
+	<header class="noFixed row">
+		<div class="headerLeft">
+			<h2 class="logo">knoc<i>K</i>nocK</h2>
+		</div>
+	</header>
+	<main>
+		<div id="signin">
+			<h1>Welcome back</h1>
+			<section class="loginArea">
+				<form action="/account/login" method="post" class="loginForm">
+					<div>
+						<label>Id</label>
+						<input type="text" name="id">
+					</div>
+					<div>
+						<label>Password</label>
+						<input type="password" name="password">
+					</div>
+					<div>
+						<p class="errorMsg"><%= msg %></p>
+					</div>
+					<button type="submit" class="bigBtn">Log in</button>
+				</form>
+			</section>
+			<section class="signupLink">
+				<a href="/account/signup">Sign up</a>
+			</section>
+		</div>
+	</main>
+</body>
+
+</html>

@@ -1,0 +1,184 @@
+/* common */
+@import 'https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css';
+@font-face {
+	font-family: 'ONE-Mobile-Title';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/ONE-Mobile-Title.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Manse';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Manse.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+:root {
+	--black : #333;
+	--beige: #e7e7df;
+	--gray: #78716c;
+	--green: #36a9ae;
+	--errorColor: #e2442f;
+	--accentColor: #6366f1;
+	--successColor: #ffc900;
+	--bg: #f4f4f0;
+	--bgLight: #f9f9f9;
+
+	--headerHeight: 16.5vw;
+	--border: 1px solid var(--gray);
+}
+::selection {
+	background-color: var(--yellow);
+}
+::-webkit-scrollbar {
+	display: none;
+}
+
+body {
+	font-family: suit, sans-serif;
+	font-size: 4.2vw;
+	color: var(--black);
+	background-color: var(--bg);
+	overflow-x: hidden;
+	padding-top: var(--headerHeight);
+}
+a:link, a:visited, a:active {
+	color: var(--black);
+	text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'ONE-Mobile-Title';
+	font-weight: normal;
+	letter-spacing: .1rem;
+}
+h1 {
+	margin-bottom: 1.8rem;
+}
+p {
+	margin: 0;
+}
+small {
+	font-size: 75%;
+}
+i {
+	display: inline-block;
+	font-size: 3.6vw;
+}
+main {
+	width: 100vw;
+	min-height: auto;
+	display: flex;
+	justify-content: center;
+	padding: 0 5vw;
+	margin-top: 8.5vw;
+}
+main > div {
+	width: 100%;
+}
+input, textarea, select, button {
+	line-height: 1;
+	border: var(--border);
+	border-radius: 2.2vw;
+	color: var(--black);
+}
+input::placeholder, textarea::placeholder, select::placeholder {
+	color: var(--gray);
+}
+input:focus, textarea:focus, select:focus, button:focus {
+	outline-color: var(--green);
+}
+.customLabel {
+	display: flex;
+	align-items: center;
+}
+.customRadio {
+	position: relative;
+	height: 0;
+	margin-top: -3.5vw;
+	margin-right: 2vw;
+}
+.customRadio::before {
+	content: '';
+	width: 3.2vw;
+	height: 3.2vw;
+	display: inline-block;
+	border-radius: 50%;
+	border: var(--border);
+	background: #fff;
+}
+.customRadio:checked::before {
+	border-color: var(--successColor);
+}
+.customRadio:checked::after {
+	content: "";
+	width: 2vw;
+	height: 2vw;
+	position: absolute;
+	top: .8vw;
+	left: .8vw;
+	border-radius: 50%;
+	background-color: var(--successColor);
+	display: inline-block;
+}
+button {
+	font-weight: 600;
+	white-space: nowrap;
+	background-color: var(--ivory);
+	padding: 4.2vw;
+	transition: all .15s ease-out;
+	cursor: pointer;
+}
+.iconBtn {
+	height: fit-content;
+	line-height: 0;
+	border-color: transparent;
+	background-color: transparent;
+	padding: 1vw;
+}
+button:hover, .brn:hover {
+	background-color: var(--beige);
+}
+.row {
+	display: flex;
+}
+.col {
+	display: flex;
+	flex-direction: column;
+}
+.between {
+	justify-content: space-between;
+}
+.center {
+	justify-content: center;
+	align-items: center;
+}
+.grow1 {
+	flex-grow: 1;
+}
+.errorMsg {
+	font-size: .8rem;
+	line-height: 1;
+	color: var(--errorColor);
+}
+
+.card {
+	background-color: #fff;
+	border: 1px solid var(--black);
+	border-radius: .2rem;
+	margin-bottom: 4vw;
+	padding: 2vw 3vw;
+	overflow: hidden;
+	transition: all .15s ease-out;
+}
+.card:hover {
+	box-shadow: 0.25rem 0.25rem var(--black);
+}
+.createdAt {
+	font-size: .6rem;
+	color: var(--gray);
+	margin: 0.4rem 0;
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Sign up | Knocknock</title>
+	<link rel="icon" type="image/svg" href="/images/favicon.svg"/>
+	<link rel="stylesheet" href="/css/common/normalize.css">
+	<link rel="stylesheet" href="/css/common/default.css">
+	<link rel="stylesheet" href="/css/common/header.css">
+	<link rel="stylesheet" href="/css/account/account.css">
+	<style>
+	</style>
+</head>
+
+<body>
+	<header class="noFixed row">
+        <div class="headerLeft">
+            <h2 class="logo">knoc<i>K</i>nocK</h2>
+        </div>
+        <div class="headerRight">
+        </div>
+	</header>
+	<main>
+		<div id="signUp">
+			<h1>Come whit us</h1>
+			<form action="/account/signup" method="post" class="loginForm">
+				<div>
+					<label>Id <span class="idErr errorMsg"><%= msg %></span></label>
+					<input type="text" name="id" onchange="idCheck(event);">
+                    
+				</div>
+				<div>
+					<label>Password</label>
+					<input type="password" name="password">
+				</div>
+				<div>
+					<label>Email</label>
+					<input type="email" name="email">
+				</div>
+				<div>
+					<p class="errorMsg"><%= msg %></p>
+				</div>
+				<button type="submit" class="bigBtn">Sign up</button>
+			</form>
+		</div>
+	</main>
+	<script>
+		async function idCheck(evt) {
+			if(evt.target.value.trim().length > 0) {
+				let idErr = document.querySelector('.idErr');
+				let response = await fetch('/account/idCheck?id=' + evt.target.value, {method :"get"});
+				let result = await response.json();
+				if(result.success) {
+					idErr.innerHTML = '⩗ 사용할 수 있는 아이디입니다';
+					idErr.style.color = 'var(--green)';
+				}else {
+                    idErr.innerHTML = '⩗ 이미 사용 중인 아이디입니다';
+                    idErr.style.color = 'var(--errorColor)';
+				}
+				console.log(result, [evt.target.value]);
+			}
+		}
+	</script>
+</body>
+
+</html>
