@@ -86,7 +86,7 @@
 							</div>
 							<div class="msgInfo">
 								<div class="unreadCnt"><%= message.unread.length %></div>
-								<% if(new Date(message.createdAt.toLocaleDateString()) < today.toLocaleDateString()) {%> 
+								<% if(new Date(message.createdAt) < today) {%> 
 									<div class="time"><%= message.createdAt.toLocaleString().substring(0, message.createdAt.toLocaleString().lastIndexOf(':')).slice(6)%></div>
 								<% }else {%> 
 									<div class="time"><%= message.createdAt.toLocaleTimeString().substring(0, message.createdAt.toLocaleTimeString().lastIndexOf(':'))%></div>

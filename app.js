@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 
 require('dotenv').config();
 const uri = process.env.MONGODB_URI;
-mongoose.connect(uri, {dbName: 'study'}).catch((err) => {
+mongoose.connect(uri, {dbName: 'konckonck'}).catch((err) => {
 	console.log('failed' + err.message);
 });
 
