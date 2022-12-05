@@ -182,3 +182,15 @@ button:hover, .brn:hover {
 	color: var(--gray);
 	margin: 0.4rem 0;
 }
+
+#chkSize {
+	position: fixed;
+	top: 3vw;
+	right: 3vw;
+	font-size: 12px;
+	text-align: right;
+	line-height: 1.4;
+	color: #fff;
+	background-color: var(--green);
+	padding: 2vw;
+}

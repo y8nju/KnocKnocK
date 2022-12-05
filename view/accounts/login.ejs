@@ -43,6 +43,31 @@
 			</section>
 		</div>
 	</main>
+	<div id="chkSize">
+		<p>이 페이지는 모바일 사이즈를 고려하여 만들어졌습니다</p>
+		<p>브라우저 가로 사이즈를 400px로 보시는 것을 권장합니다</p>
+	</div>
+	<script>
+
+		window.onload = function() {
+			console.log("");
+			console.log("[window onload] : [start]");
+			console.log(""); 
+		};
+
+		window.onresize = function(event){
+			var innerWidth = window.innerWidth;
+			// console.log(innerWidth);
+			if (innerWidth <= 400){
+				chkSize.style.display = 'none'
+				// alert(innerWidth);
+			}else {
+				chkSize.style.display = 'block'
+
+			}
+		}
+
+	</script>
 </body>
 
 </html>
