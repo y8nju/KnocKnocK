@@ -70,13 +70,9 @@
 					</div>
 					<div class="roomList" id="allList" title="전체 채팅">
 						<% rooms.forEach(room => { %> 
-							<article class="card row" id="allRoom_<%= room._id %>" onclick="
-								<% if(room.type=='public' || room.joinerList.includes(userSession)) { %>
-									location.href='/chats/room?_id=<%= room._id %>'
-								<% }else {%> 
-									pwChkModal('flex', '<%= room._id %>');
-								<% }%>
-								">
+							<article class="card row" id="allRoom_<%= room._id %>" 
+								data-id="<%= room._id %>" data-type="<%= room.type %>" data-joiners="<%= room.joinerList %>"
+								onclick="linkToRoom(this.dataset.id, this.dataset.type, this.dataset.joiners)">
 								<div class="row center owner">
 									<span><%=room.owner%></span>
 								</div>
@@ -110,13 +106,9 @@
 					</div>
 					<div class="roomList" id="notList" title="미참여 채팅">
 						<% notRooms.forEach(room => { %> 
-							<article class="card row" onclick="
-								<% if(!(room.type=='private')) { %>
-								location.href='/chats/room?_id=<%= room._id %>'
-								<% }else{%> 
-									pwChkModal('flex', '<%= room._id %>');
-								<% } %>
-								">
+							<article class="card row" 
+								data-id="<%= room._id %>" data-type="<%= room.type %>" data-joiners="<%= room.joinerList %>"
+								onclick="linkToRoom(this.dataset.id, this.dataset.type, this.dataset.joiners)">
 								<div class="row center owner">
 									<span><%=room.owner%></span>
 								</div>
@@ -200,6 +192,14 @@
 	</main>
 	<script>
 		isNewCnt()
+		function linkToRoom(id, type, joiners) {
+			let userSession = document.querySelector('.userSession').value;
+			if(type=='public' || joiners.includes(userSession)) {
+				location.href=`/chats/room?_id=${id}`
+			} else {
+				pwChkModal('flex', id);
+			}
+		}
 		function roomSel() {
 			let roomSel = document.querySelector('.roomSel');
 			let selVal = roomSel.options[roomSel.selectedIndex].value;
