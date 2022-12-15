@@ -55,9 +55,10 @@
 	<script>
 
 		window.onload = function() {
-			console.log("");
-			console.log("[window onload] : [start]");
-			console.log(""); 
+			// console.log("");
+			// console.log("[window onload] : [start]");
+			// console.log(""); 
+			isMobile()
 		};
 
 		window.onresize = function(event){
@@ -69,6 +70,14 @@
 			}else {
 				chkSize.style.display = 'block'
 
+			}
+		}
+		const isMobile = () => {
+			const user = navigator.userAgent;
+			if ( user.indexOf("iPhone") > -1 || user.indexOf("Android") > -1 ) {
+				chkSize.style.display = 'none'
+			}else {
+				chkSize.style.display = 'block'
 			}
 		}
 
