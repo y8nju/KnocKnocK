@@ -4,11 +4,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta property="og:url" content="http://knocknockchat.duckdns.org/">
-	<meta property="og:title" content="KnocKnocK">
-	<meta property="og:type" content="website">
-	<meta property="og:image" content="/images/KnocKnocK.png">
-	<meta property="og:description" content="KnocKnocK! 오픈채팅">
+	<%- include("../common/meta.ejs") %>
 	<title>Home | Knocknock</title>
 	<link rel="icon" type="image/svg" href="/images/favicon.svg"/>
 	<link rel="stylesheet" href="/css/common/normalize.css">
@@ -20,7 +16,7 @@
 	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
 </head>
 <body>
-	<%- include("../common/header.ejs") %> 
+	<%- include("../common/header.ejs") %>
 	<main>
 		<div id="home" class="col">
 			<input type="hidden" value="<%=userSession%>" class="userSession">
@@ -39,7 +35,7 @@
 				</div>
 				<section class="roomListArea">
 					<div class="roomList active" id="joinList" title="참여 중인 채팅">
-						<% joinRooms.forEach(room => { %> 
+						<% joinRooms.forEach(room => { %>
 							<!-- 참여 중인 채팅방의 경우 비밀번호를 받지 않아도 됨 -->
 							<article class="card row" id="room_<%= room._id %>" onclick="location.href='/chats/room?_id=<%= room._id %>'">
 								<div class="row center owner">
@@ -47,14 +43,14 @@
 								</div>
 								<div class="grow1">
 									<div class="row">
-										<span class="roomTit"><%=room.title%> <small><%=room.joiner.length%></small></span> 
+										<span class="roomTit"><%=room.title%> <small><%=room.joiner.length%></small></span>
 										<% if(room.type=='private') { %>
 										<span class="private"><i class="fi fi-sr-lock"></i></span>
-										<% } %> 
+										<% } %>
 										<span class="createdAt">
-											<% if(new Date(new Object(room.lastMsg).createdAt).toLocaleDateString() == today.toLocaleDateString()) { %> 
+											<% if(new Date(new Object(room.lastMsg).createdAt).toLocaleDateString() == today.toLocaleDateString()) { %>
 												<%= new Object(room.lastMsg).createdAt.toLocaleTimeString().substring(0, new Object(room.lastMsg).createdAt.toLocaleTimeString().lastIndexOf(':'))%>
-											<% }else { %> 
+											<% }else { %>
 												<%= new Object(room.lastMsg).createdAt ? new Date(new Object(room.lastMsg).createdAt).toLocaleDateString().slice(6) : '' %>
 											<% } %>
 										</span>
@@ -63,7 +59,7 @@
 										<span class="lastMsg">
 											<% if(new Object(room.lastMsg).data == 'chat') { %>
 												<%= new Object(room.lastMsg).content ?? '' %>
-											<% }else if(new Object(room.lastMsg).data == 'file') { %> 
+											<% }else if(new Object(room.lastMsg).data == 'file') { %>
 												사진
 											<% } %>
 										</span>
@@ -74,8 +70,8 @@
 						<% }) %>
 					</div>
 					<div class="roomList" id="allList" title="전체 채팅">
-						<% rooms.forEach(room => { %> 
-							<article class="card row" id="allRoom_<%= room._id %>" 
+						<% rooms.forEach(room => { %>
+							<article class="card row" id="allRoom_<%= room._id %>"
 								data-id="<%= room._id %>" data-type="<%= room.type %>" data-joiners="<%= room.joinerList %>"
 								onclick="linkToRoom(this.dataset.id, this.dataset.type, this.dataset.joiners)">
 								<div class="row center owner">
@@ -83,14 +79,14 @@
 								</div>
 								<div class="grow1">
 									<div class="row">
-										<span class="roomTit"><%=room.title%> <small><%=room.joiner.length%></small></span> 
+										<span class="roomTit"><%=room.title%> <small><%=room.joiner.length%></small></span>
 										<% if(room.type=='private') { %>
 										<span class="private"><i class="fi fi-sr-lock"></i></span>
-										<% } %> 
+										<% } %>
 										<span class="createdAt">
-											<% if(new Date(new Object(room.lastMsg).createdAt).toLocaleDateString() == today.toLocaleDateString()) { %> 
+											<% if(new Date(new Object(room.lastMsg).createdAt).toLocaleDateString() == today.toLocaleDateString()) { %>
 												<%= new Object(room.lastMsg).createdAt.toLocaleTimeString().substring(0, new Object(room.lastMsg).createdAt.toLocaleTimeString().lastIndexOf(':'))%>
-											<% }else { %> 
+											<% }else { %>
 												<%= new Object(room.lastMsg).createdAt ? new Date(new Object(room.lastMsg).createdAt).toLocaleDateString().slice(6) : '' %>
 											<% } %>
 										</span>
@@ -99,7 +95,7 @@
 										<span class="lastMsg">
 											<% if(new Object(room.lastMsg).data == 'chat') { %>
 												<%= new Object(room.lastMsg).content ?? '' %>
-											<% }else if(new Object(room.lastMsg).data == 'file') { %> 
+											<% }else if(new Object(room.lastMsg).data == 'file') { %>
 												사진
 											<% } %>
 										</span>
@@ -110,8 +106,8 @@
 						<% }) %>
 					</div>
 					<div class="roomList" id="notList" title="미참여 채팅">
-						<% notRooms.forEach(room => { %> 
-							<article class="card row" 
+						<% notRooms.forEach(room => { %>
+							<article class="card row"
 								data-id="<%= room._id %>" data-type="<%= room.type %>" data-joiners="<%= room.joinerList %>"
 								onclick="linkToRoom(this.dataset.id, this.dataset.type, this.dataset.joiners)">
 								<div class="row center owner">
@@ -119,10 +115,10 @@
 								</div>
 								<div class="grow1">
 									<div class="row">
-										<span class="roomTit"><%=room.title%> <small><%=room.joiner.length%></small></span> 
+										<span class="roomTit"><%=room.title%> <small><%=room.joiner.length%></small></span>
 										<% if(room.type=='private') { %>
 										<span class="private"><i class="fi fi-sr-lock"></i></span>
-										<% } %> 
+										<% } %>
 										<span class="createdAt"></span>
 									</div>
 									<div class="roomInfo row between">
