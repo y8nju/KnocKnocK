@@ -17,37 +17,39 @@
 </head>
 
 <body>
-	<header class="noFixed row">
-        <div class="headerLeft">
-            <h2 class="logo">knoc<i>K</i>nocK</h2>
-        </div>
-        <div class="headerRight">
-        </div>
-	</header>
-	<main>
-		<div id="signUp">
-			<h1>Come whit us</h1>
-			<form action="/account/signup" method="post" class="loginForm">
-				<div>
-					<label>Id <span class="idErr errorMsg"><%= msg %></span></label>
-					<input type="text" name="id" onchange="idCheck(event);">
-                    
-				</div>
-				<div>
-					<label>Password</label>
-					<input type="password" name="password">
-				</div>
-				<div>
-					<label>Email</label>
-					<input type="email" name="email">
-				</div>
-				<div>
-					<p class="errorMsg"><%= msg %></p>
-				</div>
-				<button type="submit" class="bigBtn">Sign up</button>
-			</form>
-		</div>
-	</main>
+	<div id="wrapper" class="col">
+		<header class="noFixed row">
+			<div class="headerLeft">
+				<h2 class="logo">knoc<i>K</i>nocK</h2>
+			</div>
+			<div class="headerRight">
+			</div>
+		</header>
+		<main>
+			<div id="signUp">
+				<h1>Come whit us</h1>
+				<form action="/account/signup" method="post" class="loginForm">
+					<div>
+						<label>Id <span class="idErr errorMsg"><%= msg %></span></label>
+						<input type="text" name="id" onchange="idCheck(event);">
+						
+					</div>
+					<div>
+						<label>Password</label>
+						<input type="password" name="password">
+					</div>
+					<div>
+						<label>Email</label>
+						<input type="email" name="email">
+					</div>
+					<div>
+						<p class="errorMsg"><%= msg %></p>
+					</div>
+					<button type="submit" class="bigBtn">Sign up</button>
+				</form>
+			</div>
+		</main>
+	</div>
 	<script>
 		async function idCheck(evt) {
 			if(evt.target.value.trim().length > 0) {

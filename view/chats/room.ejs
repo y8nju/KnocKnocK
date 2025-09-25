@@ -14,102 +14,109 @@
 	<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
 </head>
 <body>
-	<header>
-		<div class="headerLeft">
-			<div>
-				<a href="/chats" class="backBtn">
-					<button class="iconBtn"><i class="fi fi-rr-angle-left"></i></button>
-				</a>
-			</div>
-		</div>
-		<div class="headerCenter">
-			<h5><span class="roomTit"><%= room.title %></span><small>(<%=room.joiner.length%>)</small></h5>
-		</div>
-		<div class="headerRight">
-			<div>
-				<button type="button" class="iconBtn" onclick="navShow()"><i class="fi fi-rr-menu-burger"></i></button>
-			</div>
-			<nav title="메뉴">
-				<div class="menu col">
-					<div class="menuHeader">
-						<button type="button" class="iconBtn closeBtn" onclick="navHide()"><i class="fi fi-rr-cross"></i></button>
-						<h3><%= room.title %></h3>
-						<p class="joinerNum"><span><%=room.joiner.length%></span> 명 참여중</p>
-						<dl>
-							<dt>개설자</dt>
-							<dd><%= room.owner %></dd>
-							<dt>개설일</dt>
-							<dd><%= room.createdAt.toLocaleDateString() %></dd>
-						</dl>
-						<% if(room.owner == userSession) {%>
-							<a href="/chats/delete?_id=<%= room._id %>" class="roomDelLink">채팅방 삭제하기</a>
-						<% } %> 
-					</div>
-					<div class="joinerList">
-						<h3>참여자</h3>
-						<% room.joiner.forEach(elm => { %>
-						<p class="user row">
-							<span class="icon"><i class="fi fi-rr-portrait"></i></span>
-							<% if(elm.joinerName == userSession) {%>
-								<span class="userMe">나</span>
-							<% }%>
-							<span><%=elm.joinerName%></span>
-						</p>
-						<%})%>
-					</div>
-					<div class="menuFooter">
-						<a href="/chats/exit?_id=<%= room._id %>" class="row">
-							<span class="iconBtn"><i class="fi fi-rr-exit"></i></span>
-							<span>채팅 나가기</span>
-						</a>
-					</div>
+	<div id="wrapper" class="col">
+		<header>
+			<div class="headerLeft">
+				<div>
+					<a href="/chats" class="backBtn">
+						<button class="iconBtn"><i class="fi fi-rr-angle-left"></i></button>
+					</a>
 				</div>
-				<div class="overlay" onclick="navHide()"></div>
-			</nav>
-		</div>
-	</header>
-	<main>
-		<div id="room" class="col">
-			<input type="hidden" class="userSession" value="<%= userSession %>">
-			<section class="chatView grow1 col">
-				<% messages.forEach(message => { %>
-					<% if(message.data !== 'serverMsg') {%> 
-						<div class="msgArea <%=message.type %> row">
-							<div class="msgContent">
-								<div class="talker"><%= message.talker %> </div>
-								<div class="msg">
-									<%if(message.data=='chat'){%>
-										<%= message.content %>
-									<% } else if(message.data=='file') {%>
-										<img src="<%= message.content %>">
-									<%}%>
+			</div>
+			<div class="headerCenter">
+				<h5><span class="roomTit"><%= room.title %></span><small>(<%=room.joiner.length%>)</small></h5>
+			</div>
+			<div class="headerRight">
+				<div>
+					<button type="button" class="iconBtn" onclick="navShow()"><i class="fi fi-rr-menu-burger"></i></button>
+				</div>
+				<nav title="메뉴">
+					<div class="menu col">
+						<div class="menuHeader">
+							<button type="button" class="iconBtn closeBtn" onclick="navHide()"><i class="fi fi-rr-cross"></i></button>
+							<h3><%= room.title %></h3>
+							<p class="joinerNum"><span><%=room.joiner.length%></span> 명 참여중</p>
+							<dl>
+								<dt>개설자</dt>
+								<dd><%= room.owner %></dd>
+								<dt>개설일</dt>
+								<dd><%= room.createdAt.toLocaleDateString() %></dd>
+							</dl>
+							<% if(room.owner == userSession) {%>
+								<a href="/chats/delete?_id=<%= room._id %>" class="roomDelLink">채팅방 삭제하기</a>
+							<% } %> 
+						</div>
+						<div class="joinerList">
+							<h3>참여자</h3>
+							<% room.joiner.forEach(elm => { %>
+							<p class="user row">
+								<span class="icon"><i class="fi fi-rr-portrait"></i></span>
+								<% if(elm.joinerName == userSession) {%>
+									<span class="userMe">나</span>
+								<% }%>
+								<span><%=elm.joinerName%></span>
+							</p>
+							<%})%>
+						</div>
+						<div class="menuFooter">
+							<a href="/chats/exit?_id=<%= room._id %>" class="row">
+								<span class="iconBtn"><i class="fi fi-rr-exit"></i></span>
+								<span>채팅 나가기</span>
+							</a>
+						</div>
+					</div>
+					<div class="overlay" onclick="navHide()"></div>
+				</nav>
+			</div>
+		</header>
+		<main>
+			<div id="room" class="col">
+				<input type="hidden" class="userSession" value="<%= userSession %>">
+				<section class="chatView grow1 col">
+					<% messages.forEach(message => { %>
+						<% if(message.data !== 'serverMsg') {%> 
+							<div class="msgArea <%=message.type %> row">
+								<div class="msgContent">
+									<div class="talker"><%= message.talker %> </div>
+									<div class="msg">
+										<%if(message.data=='chat'){%>
+											<%= message.content %>
+										<% } else if(message.data=='file') {%>
+											<img src="<%= message.content %>">
+										<%}%>
+									</div>
+								</div>
+								<div class="msgInfo">
+									<div class="unreadCnt"><%= message.unread.length %></div>
+									<% if(new Date(message.createdAt) < today) {%> 
+										<div class="time"><%= message.createdAt.toLocaleString().substring(0, message.createdAt.toLocaleString().lastIndexOf(':')).slice(6)%></div>
+									<% }else {%> 
+										<div class="time"><%= message.createdAt.toLocaleTimeString().substring(0, message.createdAt.toLocaleTimeString().lastIndexOf(':'))%></div>
+									<% } %> 
 								</div>
 							</div>
-							<div class="msgInfo">
-								<div class="unreadCnt"><%= message.unread.length %></div>
-								<% if(new Date(message.createdAt) < today) {%> 
-									<div class="time"><%= message.createdAt.toLocaleString().substring(0, message.createdAt.toLocaleString().lastIndexOf(':')).slice(6)%></div>
-								<% }else {%> 
-									<div class="time"><%= message.createdAt.toLocaleTimeString().substring(0, message.createdAt.toLocaleTimeString().lastIndexOf(':'))%></div>
-								<% } %> 
-							</div>
+						<% } else {%> 
+							<div class="serverMsg"><%= message.content %></div>
+						<% } %> 
+					<% }) %> 
+				</section>
+				<section class="messageWrite row">
+					<div class="grow1" style="position: relative;">
+						<textarea type="text"  placeholder="메세지를 입력하세요" id="writeMsg" data-room-id="<%= room._id %>"></textarea>
+						<div class="filePreview">
+							<img class="previewImg" src="">
+							<button type="button" class="fileRemove" onclick="removeFilePreview()">
+								<i class="fi fi-rr-cross"></i>
+							</button>
 						</div>
-					<% } else {%> 
-						<div class="serverMsg"><%= message.content %></div>
-					<% } %> 
-				<% }) %> 
-			</section>
-			<section class="messageWrite row">
-				<div class="grow1" style="position: relative;">
-					<textarea type="text"  placeholder="메세지를 입력하세요" id="writeMsg" data-room-id="<%= room._id %>"></textarea>
-					<div class="filePreview"><img class="previewImg" src=""></div>
-					<button type="button" class="fileSch"><i class="fi fi-rr-picture"></i></button>
-					<input style="display:none" type="file" id="attach" accept="image/*" data-room-id="<%=room._id%>" onchange="filePreview(event)">
-				</div>
-				<button type="button" class="sumitBtn" onclick="fileSend(); messageSend();">전송</button>
-			</section>
-		</div>
-	</main>
+						<button type="button" class="fileSch"><i class="fi fi-rr-picture"></i></button>
+						<input style="display:none" type="file" id="attach" accept="image/*" data-room-id="<%=room._id%>" onchange="filePreview(event)">
+					</div>
+					<button type="button" class="sumitBtn" onclick="fileSend(); messageSend();">전송</button>
+				</section>
+			</div>
+		</main>
+	</div>
 	<script>
 		window.onload = function() {
 			rebalanceHeight();
@@ -156,7 +163,7 @@
 		async function filePreview(evt) {
 			let msgFiled = document.querySelector(`.messageWrite textarea`);
 			msgFiled.setAttribute('placeholder', '');
-			msgFiled.setAttribute('disabled', '');
+			// msgFiled.setAttribute('disabled', '');
 			if(evt.target.files && evt.target.files[0]) {
 				let reader = new FileReader();
 				reader.readAsDataURL(evt.target.files[0]);
@@ -165,6 +172,15 @@
 					document.querySelector('.filePreview').style.display = 'block'
 				}
 			}
+		}
+		
+		// 파일 미리보기 제거
+		function removeFilePreview() {
+			document.querySelector('.filePreview').style.display = 'none';
+			document.querySelector('.previewImg').src = '';
+			document.querySelector("#attach").value = '';
+			let msgFiled = document.querySelector(`.messageWrite textarea`);
+			msgFiled.setAttribute('placeholder', '메세지를 입력하세요');
 		}
 		// message 전송
 		async function messageSend() {

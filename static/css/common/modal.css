@@ -15,8 +15,8 @@
 }
 
 .modal .modalContent {
-	min-width: 80vw;
-	padding: 3vw 3.4vw;
+	min-width: calc(80 * var(--vw-to-px));;
+	padding: calc(3 * var(--vw-to-px)) calc(3.4 * var(--vw-to-px));
 }
 .modal .modalContent:hover {
 	box-shadow: none;

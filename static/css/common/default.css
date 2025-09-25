@@ -28,8 +28,10 @@
 	--bg: #f4f4f0;
 	--bgLight: #f9f9f9;
 
-	--headerHeight: 16.5vw;
+	--headerHeight: calc(16.5 * var(--vw-to-px));
 	--border: 1px solid var(--gray);
+
+	--vw-to-px: 4px;
 }
 ::selection {
 	background-color: var(--yellow);
@@ -40,11 +42,9 @@
 
 body {
 	font-family: suit, sans-serif;
-	font-size: 4.2vw;
+	font-size: calc(4.2 * var(--vw-to-px));
 	color: var(--black);
-	background-color: var(--bg);
 	overflow-x: hidden;
-	padding-top: var(--headerHeight);
 }
 a:link, a:visited, a:active {
 	color: var(--black);
@@ -66,15 +66,31 @@ small {
 }
 i {
 	display: inline-block;
-	font-size: 3.6vw;
+	font-size: calc(3.6 * var(--vw-to-px));
+}
+#wrapper {
+	width: 100%;
+	max-width: 400px;
+	margin: 0 auto;
+	min-height: 100vh;
+	overflow: hidden;
+	background-color: var(--bg);
+	padding-top: calc(var(--headerHeight) + 8.5 * var(--vw-to-px));
+	gap: calc(8.5 * var(--vw-to-px));
+	position: relative;
+	border: 1px solid #f3f2f226;
+
+	&:not(:has(#room)) {
+		padding-bottom: var(--headerHeight);
+	}
 }
 main {
-	width: 100vw;
+	width: 100%;
 	min-height: auto;
 	display: flex;
 	justify-content: center;
-	padding: 0 5vw;
-	margin-top: 8.5vw;
+	padding: 0 calc(5 * var(--vw-to-px));
+	flex-grow: 1;
 }
 main > div {
 	width: 100%;
@@ -82,7 +98,7 @@ main > div {
 input, textarea, select, button {
 	line-height: 1;
 	border: var(--border);
-	border-radius: 2.2vw;
+	border-radius: calc(2.2 * var(--vw-to-px));
 	color: var(--black);
 }
 input::placeholder, textarea::placeholder, select::placeholder {
@@ -98,13 +114,13 @@ input:focus, textarea:focus, select:focus, button:focus {
 .customRadio {
 	position: relative;
 	height: 0;
-	margin-top: -3.5vw;
-	margin-right: 2vw;
+	margin-top: calc(-3.5 * var(--vw-to-px));
+	margin-right: calc(2 * var(--vw-to-px));
 }
 .customRadio::before {
 	content: '';
-	width: 3.2vw;
-	height: 3.2vw;
+	width: calc(3.2 * var(--vw-to-px));
+	height: calc(3.2 * var(--vw-to-px));
 	display: inline-block;
 	border-radius: 50%;
 	border: var(--border);
@@ -115,11 +131,11 @@ input:focus, textarea:focus, select:focus, button:focus {
 }
 .customRadio:checked::after {
 	content: "";
-	width: 2vw;
-	height: 2vw;
+	width: calc(2 * var(--vw-to-px));
+	height: calc(2 * var(--vw-to-px));
 	position: absolute;
-	top: .8vw;
-	left: .8vw;
+	top: calc(.8 * var(--vw-to-px));
+	left: calc(.8 * var(--vw-to-px));
 	border-radius: 50%;
 	background-color: var(--successColor);
 	display: inline-block;
@@ -128,7 +144,7 @@ button {
 	font-weight: 600;
 	white-space: nowrap;
 	background-color: var(--ivory);
-	padding: 4.2vw;
+	padding: calc(4.2 * var(--vw-to-px));
 	transition: all .15s ease-out;
 	cursor: pointer;
 }
@@ -137,7 +153,7 @@ button {
 	line-height: 0;
 	border-color: transparent;
 	background-color: transparent;
-	padding: 1vw;
+	padding: calc(1 * var(--vw-to-px));
 }
 button:hover, .brn:hover {
 	background-color: var(--beige);
@@ -169,8 +185,8 @@ button:hover, .brn:hover {
 	background-color: #fff;
 	border: 1px solid var(--black);
 	border-radius: .2rem;
-	margin-bottom: 4vw;
-	padding: 2vw 3vw;
+	margin-bottom: calc(4 * var(--vw-to-px));
+	padding: calc(2 * var(--vw-to-px)) calc(3 * var(--vw-to-px));
 	overflow: hidden;
 	transition: all .15s ease-out;
 }
@@ -185,12 +201,12 @@ button:hover, .brn:hover {
 
 #chkSize {
 	position: fixed;
-	top: 3vw;
-	right: 3vw;
+	top: calc(3 * var(--vw-to-px));
+	right: calc(3 * var(--vw-to-px));
 	font-size: 12px;
 	text-align: right;
 	line-height: 1.4;
 	color: #fff;
 	background-color: var(--green);
-	padding: 2vw;
+	padding: calc(2 * var(--vw-to-px));
 }

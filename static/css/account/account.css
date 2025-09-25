@@ -2,8 +2,9 @@ input {
 	width: 100%;
 	font-size: .9rem;
 	line-height: 1;
-	padding: 2.6vw 3.8vw;
+	padding: calc(2.6 * var(--vw-to-px)) calc(3.8 * var(--vw-to-px));
 }
+
 label {
 	width: 100%;
 	display: flex;
@@ -11,37 +12,44 @@ label {
 	align-items: flex-end;
 	font-size: 1.1rem;
 	font-weight: 600;
-	margin-bottom: 1.7vw;
+	margin-bottom: calc(1.7 * var(--vw-to-px));
 }
+
 button {
 	width: 100%;
 	color: #fff;
 	background-color: var(--black);
 }
-button:hover, button:active {
+
+button:hover,
+button:active {
 	border-color: var(--successColor);
-	box-shadow: 1vw 1vw #000;
+	box-shadow: calc(1 * var(--vw-to-px)) calc(1 * var(--vw-to-px)) #000;
 	background-color: var(--successColor);
-	transform: translate(-1vw,-1vw);
+	transform: translate(calc(-1 * var(--vw-to-px)), calc(-1 * var(--vw-to-px)));
 }
+
 header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 5vw;
+	padding: calc(5 * var(--vw-to-px));
 }
+
 header .headerRight a {
 	text-decoration: underline;
 }
 
-.loginForm > div {
-	margin-bottom: 6vw;
+.loginForm>div {
+	margin-bottom: calc(6 * var(--vw-to-px));
 }
+
 .signupLink {
 	font-size: 1.1rem;
 	text-align: center;
-	margin-top: 10vw;
+	margin-top: auto;
 }
+
 .signupLink a {
 	text-decoration: underline;
 }

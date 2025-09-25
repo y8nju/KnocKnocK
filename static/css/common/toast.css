@@ -2,7 +2,7 @@
 	width: max-content; 
 	max-width: 85%;
     display: none;
-    position: fixed; 
+    position: absolute; 
 	bottom: 10%; 
 	left: 50%; 
 	transform: translateX(-50%); 
@@ -16,5 +16,5 @@
 	text-align: center; 
     line-height: 1;
     color: #fff;
-    padding: 2vw 3vw;
+    padding: calc(2 * var(--vw-to-px)) calc(3 * var(--vw-to-px));
 }
